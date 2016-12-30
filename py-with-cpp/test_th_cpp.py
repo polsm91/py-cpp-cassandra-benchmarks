@@ -16,15 +16,13 @@ max_parallelism = int(sys.argv[1])
 count = itertools.count() #starts at 0
 finished = False
 
-def pyworker(start,end):
+def pyworker(start,end,count):
     cppth.worker(start,end)
-    print 'done'
+    while cppth.running() != 0:
+	pass
     global finished
     if count.next() == max_parallelism-1:
         finished=True
-        print 'incr'
-    else:
-        print 'finished'
 
 #pool = ThreadPool(max_parallelism)
 
@@ -43,7 +41,7 @@ def pyworker(start,end):
 ths = []
 k_to_thread=num_keys/max_parallelism
 for i in xrange(0,num_keys,k_to_thread):
-    ths.append(threading.Thread(target=cppth.worker,args=(i,i+k_to_thread)))
+    ths.append(threading.Thread(target=pyworker,args=(i,i+k_to_thread,count)))
 for th in ths:
     th.start()
 

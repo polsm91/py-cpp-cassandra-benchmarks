@@ -28,6 +28,9 @@ public:
     };
 };
 
+int running() {
+	return count;
+}
 
 
 void verify(CassFuture *future, void *ptr);
@@ -37,6 +40,7 @@ void call(void *ptr) {
     FromTo *range = (FromTo *) ptr;
     range->from += 1;
     if (range->from > range->to) {
+count--;
         return;
     }
     CassStatement *statement = cass_prepared_bind(prepared);
@@ -118,6 +122,7 @@ void setup() {
 }
 
 void worker(int start, int end) {
+	count++;
     FromTo *range=new FromTo(start,end);
     call(range);
 }
