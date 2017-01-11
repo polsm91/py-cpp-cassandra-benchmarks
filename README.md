@@ -5,11 +5,11 @@ Single threading, multithreading and process level parallelism are implemented a
 
 Here below are reported the results obtained after conducting several experiments:
 
-**Data set:** 10000 keys
-**Query:** "SELECT * FROM case18.particle WHERE partid=?"
-**Runs each test:** 3
-Command: /usr/bin/time --format '%E %U %S ' ./test) &>> out_test
-Intel® Xeon® Processor L5630 (16 threads, 4 cpu)
+* **Data set:** 10000 keys
+* **Query:** "SELECT * FROM case18.particle WHERE partid=?"
+* **Runs each test:** 3
+* Command: /usr/bin/time --format '%E %U %S ' ./test) &>> out_test
+* Intel® Xeon® Processor L5630 (16 threads, 4 cpu)
 
 ##1. Python
 
